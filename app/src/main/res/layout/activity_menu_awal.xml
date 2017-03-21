@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.sandy.searchhotel.MenuAwal">
+
+
+    <TextView
+        android:id="@+id/judul_aplikasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="APLIKASI PENCARIAN HOTEL"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/DarkRed"
+        android:textSize="@dimen/activity_horizontal_margin"/>
+
+    <ImageView
+        android:id="@+id/icon_aplikasi"
+        android:layout_width="250sp"
+        android:layout_height="250sp"
+        android:src="@drawable/woclass"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/judul_aplikasi"
+        android:visibility="visible"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scrollbarSize="@dimen/activity_horizontal_margin"
+        android:progressDrawable="@drawable/circular_loading"
+        />
+
+    <Button
+        android:id="@+id/button_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_below="@+id/icon_aplikasi"
+        android:layout_centerHorizontal="true"
+        android:textSize="50sp"/>
+
+    <Button
+        android:id="@+id/button_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:layout_below="@+id/button_search"
+        android:layout_centerHorizontal="true"
+        android:textSize="50sp"/>
+
+</RelativeLayout>
