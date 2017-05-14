@@ -1,21 +1,40 @@
 package com.example.sandy.searchhotel;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
-public class MenuAwal extends AppCompatActivity {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.PlaceLikelihood;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
+import com.google.android.gms.location.places.Places;
+
+public class MenuAwal extends AppCompatActivity  {
 
     private ProgressBar spinner;
     ImageView gambar1;
     Button b1,b2;
+    GPSTracker gps;
+    private static final String LOG_TAG = "PlacesAPIActivity";
+    private static final int GOOGLE_API_CLIENT_ID = 0;
+    private GoogleApiClient mGoogleApiClient;
+    private static final int PERMISSION_REQUEST_CODE = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +42,7 @@ public class MenuAwal extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.navigationbar);
+
 
         gambar1 = (ImageView) findViewById(R.id.icon_aplikasi);
         spinner = (ProgressBar) findViewById(R.id.progress);
@@ -41,11 +61,10 @@ public class MenuAwal extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spinner.setVisibility(View.VISIBLE);
-                gambar1.setVisibility(View.GONE);
-                b1.setVisibility(View.GONE);
-                b2.setVisibility(View.GONE);
-            }
+                Intent A = new Intent(MenuAwal.this, GoogleTempat.class);
+                startActivity(A);
+                }
+
         });
     }
 
@@ -70,5 +89,6 @@ public class MenuAwal extends AppCompatActivity {
         }
         return true;
     }
+
 
 }
