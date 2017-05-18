@@ -5,11 +5,13 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,7 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GoogleTempat extends Activity {
+public class GoogleTempat extends AppCompatActivity {
     // flag for Internet connection status
     Boolean isInternetPresent = false;
 
@@ -49,6 +51,8 @@ public class GoogleTempat extends Activity {
     // Places Listview
     ListView lv;
 
+    Double Radius;
+
     // ListItems data
     ArrayList<HashMap<String, String>> placesListItems = new ArrayList<HashMap<String,String>>();
 
@@ -62,6 +66,11 @@ public class GoogleTempat extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_tempat);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.navigationbar);
+        Bundle a = getIntent().getExtras();
+        Radius = a.getDouble("jarak");
 
         cd = new ConnectionDetector(getApplicationContext());
 
@@ -141,6 +150,7 @@ public class GoogleTempat extends Activity {
                 startActivity(in);
             }
         });
+
     }
 
     /**
@@ -174,13 +184,13 @@ public class GoogleTempat extends Activity {
                 // Check list of types supported by google
                 //
                 String types = "lodging"; // Listing places only cafes, restaurants
-
+                String keyword = "hotels";
                 // Radius in meters - increase this value if you don't find any places
-                double radius = 5000; // 1000 meters
+                double radius = Radius; // 1000 meters
 
                 // get nearest places
                 nearPlaces = googlePlaces.search(gps.getLatitude(),
-                        gps.getLongitude(), radius, types);
+                        gps.getLongitude(), radius, types, keyword);
 
 
             } catch (Exception e) {
@@ -222,7 +232,6 @@ public class GoogleTempat extends Activity {
                                 // Place name
                                 map.put(KEY_NAME, p.name);
 
-
                                 // adding HashMap to ArrayList
                                 placesListItems.add(map);
                             }
@@ -239,7 +248,7 @@ public class GoogleTempat extends Activity {
                     else if(status.equals("ZERO_RESULTS")){
                         // Zero results found
                         alert.showAlertDialog(GoogleTempat.this, "Near Places",
-                                "Sorry no places found. Try to change the types of places",
+                                "Maaf tidak ditemukan penginapan di sekitar anda,silakan menurunkan atau menaikan jarak pencarian",
                                 false);
                     }
                     else if(status.equals("UNKNOWN_ERROR"))
@@ -278,10 +287,38 @@ public class GoogleTempat extends Activity {
         }
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menubar_about, menu);
+        getMenuInflater().inflate(R.menu.pilihan_jarak, menu);
         return true;
     }
-}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.jarak500:
+                placesListItems.clear();
+                Radius = 500.0;
+                new LoadPlaces().execute();
+                // User chose the "Settings" item, show the app settings UI...
+                break;
+            case R.id.jarak1km:
+                placesListItems.clear();
+                Radius = 1000.0;
+                new LoadPlaces().execute();
+                // User chose the "Settings" item, show the app settings UI...
+                break;
+            case R.id.jarak2km:
+                placesListItems.clear();
+                Radius = 2000.0;
+                new LoadPlaces().execute();
+                // User chose the "Settings" item, show the app settings UI...
+                break;
+
+
+//            case R.id.refresh:
+//
+//               break;
+        }
+        return true;
+}}

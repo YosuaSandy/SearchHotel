@@ -54,7 +54,7 @@ public class GooglePlaces  {
      * @param types - type of place to search
      * @return list of places
      * */
-    public PlaceList search(double latitude, double longitude, double radius, String types)
+    public PlaceList search(double latitude, double longitude, double radius, String types, String keyword)
             throws Exception {
 
         this._latitude = latitude;
@@ -72,6 +72,8 @@ public class GooglePlaces  {
             request.getUrl().put("sensor", "false");
             if(types != null)
                 request.getUrl().put("types", types);
+            if(keyword != null)
+                request.getUrl().put("keyword", keyword);
 
             PlaceList list = request.execute().parseAs(PlaceList.class);
             // Check log cat for places response status

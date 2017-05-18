@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/jarak500"
+        android:icon="@mipmap/ic_launcher"
+        android:title="500 M"
+        />
+    <item android:id="@+id/jarak1km"
+        android:icon="@mipmap/ic_launcher"
+        android:title="1 Km"
+        />
+    <item android:id="@+id/jarak2km"
+        android:icon="@mipmap/ic_launcher"
+        android:title="2 Km"
+        />
+</menu>
