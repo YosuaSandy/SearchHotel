@@ -3,6 +3,7 @@ package com.example.sandy.searchhotel;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -18,9 +19,11 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.location.places.PlacePhotoMetadataResult;
 import com.google.android.gms.location.places.PlacePhotoResult;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
 
 public class Single_place extends AppCompatActivity {
@@ -44,6 +47,8 @@ public class Single_place extends AppCompatActivity {
 
     Button b1;
 
+    GPSTracker gps2;
+
     // KEY Strings
     public static String KEY_REFERENCE = "reference"; // id of the place
 
@@ -64,6 +69,22 @@ public class Single_place extends AppCompatActivity {
         new LoadSinglePlaceDetails().execute(reference);
 
 
+       /* gps2 = new GPSTracker (this);
+        Double latitude = gps2.getLatitude();
+        Double longitude = gps2.getLongitude();
+
+        Double latitude_tujuan = placeDetails.result.geometry.location.lat;
+        Double longitude_tujuan = placeDetails.result.geometry.location.lng;
+
+        Log.d("flag", "put2 " + placeDetails.result.geometry.location.lat);
+
+        LatLng posisi_awal = new LatLng(latitude,longitude);
+        LatLng posisi_akhir = new LatLng(latitude_tujuan,longitude_tujuan);
+
+        String jarak = Double.toString(CalculationByDistance(posisi_awal,posisi_akhir));
+       TextView result_jarak = (TextView)findViewById(R.id.jarak);
+        result_jarak.setText(jarak);*/
+
         Button btn1 = (Button) findViewById(R.id.track);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +99,31 @@ public class Single_place extends AppCompatActivity {
             }
 
         });
+    }
+
+    public double CalculationByDistance(LatLng StartP, LatLng EndP) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = StartP.latitude;
+        double lat2 = EndP.latitude;
+        double lon1 = StartP.longitude;
+        double lon2 = EndP.longitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.valueOf(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
+
+        return Radius * c;
     }
 
 
@@ -137,6 +183,10 @@ public class Single_place extends AppCompatActivity {
                         // Check for all possible status
                         if(status.equals("OK")){
                             if (placeDetails.result != null) {
+                                gps2 = new GPSTracker (Single_place.this);
+                                Double latitude_awal = gps2.getLatitude();
+                                Double longitude_awal = gps2.getLongitude();
+
                                 String name = placeDetails.result.name;
                                 String id = placeDetails.result.icon;
                                 String address = placeDetails.result.formatted_address;
@@ -144,6 +194,22 @@ public class Single_place extends AppCompatActivity {
                                 String latitude = Double.toString(placeDetails.result.geometry.location.lat);
                                 String longitude = Double.toString(placeDetails.result.geometry.location.lng);
 
+
+                                Location posisi_awal = new Location("point A");
+
+                                posisi_awal.setLatitude(latitude_awal);
+                                posisi_awal.setLongitude(longitude_awal);
+
+                                Location posisi_akhir = new Location("point B");
+
+                                posisi_akhir.setLatitude(placeDetails.result.geometry.location.lat );
+                                posisi_akhir.setLongitude(placeDetails.result.geometry.location.lng );
+
+                                float jarak = posisi_awal.distanceTo(posisi_akhir) / 1000;
+
+                                DecimalFormat  df = new DecimalFormat("#.##");
+
+                               String jarak2 = df.format(jarak);
 
                                 Log.d("Place ", id + name + address + phone + latitude + longitude  );
 
@@ -153,6 +219,8 @@ public class Single_place extends AppCompatActivity {
                                 TextView lbl_address = (TextView) findViewById(R.id.address);
                                 TextView lbl_phone = (TextView) findViewById(R.id.phone);
                                 TextView lbl_location = (TextView) findViewById(R.id.location);
+                                TextView result_jarak = (TextView)findViewById(R.id.jarak);
+
 
 
                                 // Check for null data from google
@@ -167,6 +235,7 @@ public class Single_place extends AppCompatActivity {
                                 lbl_address.setText(address);
                                 lbl_phone.setText(Html.fromHtml("<b>Phone:</b> " + phone));
                                 lbl_location.setText(Html.fromHtml("<b>Latitude:</b> " + latitude + ", <b>Longitude:</b> " + longitude));
+                                result_jarak.setText(Html.fromHtml(" <b>Jarak: </b> " + jarak2 + "Km"));
 
                             }
 

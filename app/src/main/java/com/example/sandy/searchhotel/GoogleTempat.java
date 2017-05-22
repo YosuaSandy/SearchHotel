@@ -103,7 +103,7 @@ public class GoogleTempat extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.list);
 
         // button show on map
-        btnShowOnMap = (Button) findViewById(R.id.btn_show_map);
+       // btnShowOnMap = (Button) findViewById(R.id.btn_show_map);
 
         // calling background Async task to load Google Places
         // After getting places from Google all the data is shown in listview
@@ -297,20 +297,23 @@ public class GoogleTempat extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.jarak500:
+                Radius = 500.00;
+                lv.setAdapter(null);
                 placesListItems.clear();
-                Radius = 500.0;
                 new LoadPlaces().execute();
                 // User chose the "Settings" item, show the app settings UI...
                 break;
             case R.id.jarak1km:
+                Radius = 1000.00;
+                lv.setAdapter(null);
                 placesListItems.clear();
-                Radius = 1000.0;
                 new LoadPlaces().execute();
                 // User chose the "Settings" item, show the app settings UI...
                 break;
             case R.id.jarak2km:
+                Radius = 2000.00;
+                lv.setAdapter(null);
                 placesListItems.clear();
-                Radius = 2000.0;
                 new LoadPlaces().execute();
                 // User chose the "Settings" item, show the app settings UI...
                 break;

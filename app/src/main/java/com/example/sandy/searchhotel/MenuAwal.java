@@ -63,7 +63,7 @@ public class MenuAwal extends AppCompatActivity  {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Radius = 5000.0;
+                Radius = 1000.00;
                 Intent A = new Intent(MenuAwal.this, GoogleTempat.class);
                 A.putExtra("jarak", Radius);
                 startActivity(A);

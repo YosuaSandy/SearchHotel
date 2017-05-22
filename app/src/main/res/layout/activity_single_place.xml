@@ -63,12 +63,12 @@
         android:layout_marginBottom="5dip"
         android:layout_below="@+id/phone"/>
 
-    <!--  Photos Value -->
+    <!--  Jarak Value -->
     <TextView
-        android:id="@+id/photo"
+        android:id="@+id/jarak"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/alamat"
+        android:layout_below="@+id/location"
         />
 
     <!--  Tracking button -->
@@ -76,7 +76,7 @@
         android:id="@+id/track"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/location"
+        android:layout_below="@+id/jarak"
         android:text="Tracking"
         android:textSize="25sp"
         android:layout_alignParentRight="true"
