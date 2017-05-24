@@ -43,7 +43,7 @@ public class MenuAwal extends AppCompatActivity  {
         setContentView(R.layout.activity_menu_awal);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.navigationbar);
+        getSupportActionBar().setCustomView(R.layout.navigationbarmenuawal);
 
 
         gambar1 = (ImageView) findViewById(R.id.icon_aplikasi);

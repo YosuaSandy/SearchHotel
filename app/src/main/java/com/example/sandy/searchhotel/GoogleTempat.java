@@ -69,6 +69,7 @@ public class GoogleTempat extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.navigationbar);
+
         Bundle a = getIntent().getExtras();
         Radius = a.getDouble("jarak");
 

@@ -6,10 +6,13 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,11 +37,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Tracker extends FragmentActivity implements
+public class Tracker extends AppCompatActivity implements
         GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener  {
 
     private GoogleMap googleMap;
     double latitude_tujuan,longitude_tujuan;
+    String nama;
     GPSTracker gps  ;
     private static LatLng fromPosition = null;
     private static LatLng toPosition = null;
@@ -48,14 +52,40 @@ public class Tracker extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracker);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.navigationbarmenuawal);
+
        gps = new GPSTracker(Tracker.this);
         Bundle a = getIntent().getExtras();
         latitude_tujuan = a.getDouble("Latitude");
         longitude_tujuan = a.getDouble("Longitude");
+        nama = a.getString("Nama");
         Log.d("Place ", String.valueOf(latitude_tujuan + longitude_tujuan));
         addGoogleMap();
         addMarker();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menubar_tracker, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.exit:
+                Intent B = new Intent(Tracker.this, MenuAwal.class);
+                startActivity(B);
+                // User chose the "Settings" item, show the app settings UI...
+                break;
+
+//            case R.id.refresh:
+//
+//               break;
+        }
+        return true;
     }
 
 
@@ -76,7 +106,7 @@ public class Tracker extends FragmentActivity implements
         // class add marker
         if (googleMap != null) {
             googleMap.addMarker(new MarkerOptions().position(posisi_awal).title("Posisi Anda").draggable(true).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-            googleMap.addMarker(new MarkerOptions().position(posisi_akhir).title("Posisi Tujuan").draggable(true).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            googleMap.addMarker(new MarkerOptions().position(posisi_akhir).title(nama).draggable(true).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
             String url = getUrl(posisi_awal, posisi_akhir);
             Log.d("onMapClick", url.toString());
             FetchUrl FetchUrl = new FetchUrl();
