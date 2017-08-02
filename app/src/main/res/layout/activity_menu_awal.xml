@@ -41,20 +41,25 @@
 
     <Button
         android:id="@+id/button_search"
-        android:layout_width="wrap_content"
+        android:layout_width="120sp"
         android:layout_height="wrap_content"
         android:text="Search"
         android:layout_below="@+id/icon_aplikasi"
         android:layout_centerHorizontal="true"
-        android:textSize="50sp"/>
+        android:textSize="20sp"
+        android:drawableLeft="@drawable/places_ic_search"
+        android:background="@drawable/button"/>
 
     <Button
         android:id="@+id/button_exit"
-        android:layout_width="wrap_content"
+        android:layout_width="120sp"
         android:layout_height="wrap_content"
         android:text="Exit"
         android:layout_below="@+id/button_search"
         android:layout_centerHorizontal="true"
-        android:textSize="50sp"/>
+        android:textSize="20sp"
+        android:layout_marginTop="20sp"
+        android:background="@drawable/button"
+       />
 
 </RelativeLayout>

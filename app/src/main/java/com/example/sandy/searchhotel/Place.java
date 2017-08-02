@@ -29,6 +29,12 @@ public class Place implements Serializable  {
     public Geometry geometry;
 
     @Key
+    public double rating;
+
+    @Key
+    public String review;
+
+    @Key
     public String formatted_address;
 
     @Key

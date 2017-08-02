@@ -80,7 +80,7 @@ public class GoogleTempat extends AppCompatActivity {
         if (!isInternetPresent) {
             // Internet Connection is not present
             alert.showAlertDialog(GoogleTempat.this, "Internet Connection Error",
-                    "Please connect to working Internet connection", false);
+                    "Tolong hubungkan device dengan koneksi internet seperti wi-fi atau paket data", false);
             // stop executing code by return
             return;
         }
@@ -94,7 +94,7 @@ public class GoogleTempat extends AppCompatActivity {
         } else {
             // Can't get user's current location
             alert.showAlertDialog(GoogleTempat.this, "GPS Status",
-                    "Couldn't get location information. Please enable GPS",
+                    "Tidak bisa mendapatkan informasi lokasi,tolong nyalakan GPS pada setting --> location",
                     false);
             // stop executing code by return
             return;
@@ -248,37 +248,37 @@ public class GoogleTempat extends AppCompatActivity {
                     }
                     else if(status.equals("ZERO_RESULTS")){
                         // Zero results found
-                        alert.showAlertDialog(GoogleTempat.this, "Near Places",
+                        alert.showAlertDialog(GoogleTempat.this, "Peringatan",
                                 "Maaf tidak ditemukan penginapan di sekitar anda,silakan menurunkan atau menaikan jarak pencarian",
                                 false);
                     }
                     else if(status.equals("UNKNOWN_ERROR"))
                     {
-                        alert.showAlertDialog(GoogleTempat.this, "Places Error",
+                        alert.showAlertDialog(GoogleTempat.this, "Peringatan",
                                 "Sorry unknown error occured.",
                                 false);
                     }
                     else if(status.equals("OVER_QUERY_LIMIT"))
                     {
-                        alert.showAlertDialog(GoogleTempat.this, "Places Error",
+                        alert.showAlertDialog(GoogleTempat.this, "Peringatan",
                                 "Sorry query limit to google places is reached",
                                 false);
                     }
                     else if(status.equals("REQUEST_DENIED"))
                     {
-                        alert.showAlertDialog(GoogleTempat.this, "Places Error",
+                        alert.showAlertDialog(GoogleTempat.this, "Peringatan",
                                 "Sorry error occured. Request is denied",
                                 false);
                     }
                     else if(status.equals("INVALID_REQUEST"))
                     {
-                        alert.showAlertDialog(GoogleTempat.this, "Places Error",
+                        alert.showAlertDialog(GoogleTempat.this, "Peringatan",
                                 "Sorry error occured. Invalid Request",
                                 false);
                     }
                     else
                     {
-                        alert.showAlertDialog(GoogleTempat.this, "Places Error",
+                        alert.showAlertDialog(GoogleTempat.this, "Peringatan",
                                 "Sorry error occured.",
                                 false);
                     }

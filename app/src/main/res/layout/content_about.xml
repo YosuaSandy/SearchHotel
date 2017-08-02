@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <TextView
+    android:id="@+id/dibuat"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="About!"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:text="Dibuat oleh "
+    android:layout_marginTop="180sp"
+    android:layout_centerHorizontal="true"
+    android:textStyle="bold"
+    android:textSize="24sp"
+    android:typeface="serif"/>
+<TextView
+    android:id="@+id/nama"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Yosua Sandy Chrisnugroho "
+    android:layout_below="@+id/dibuat"
+    android:layout_centerInParent="true"
+    android:textStyle="bold"
+    android:textSize="24sp"
+    android:typeface="serif"
+ />
+<TextView
+    android:id="@+id/nim"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="A11.2012.06604"
+    android:layout_below="@+id/nama"
+    android:layout_centerInParent="true"
+    android:textStyle="bold"
+    android:textSize="24sp"
+    android:typeface="serif"/>
+
+</RelativeLayout>

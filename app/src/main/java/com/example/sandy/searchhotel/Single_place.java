@@ -169,6 +169,7 @@ public class Single_place extends AppCompatActivity {
                                 String phone = placeDetails.result.formatted_phone_number;
                                 String latitude = Double.toString(placeDetails.result.geometry.location.lat);
                                 String longitude = Double.toString(placeDetails.result.geometry.location.lng);
+                                String rating = placeDetails.result.review;
 
 
                                 Location posisi_awal = new Location("point A");
@@ -196,6 +197,7 @@ public class Single_place extends AppCompatActivity {
                                 TextView lbl_phone = (TextView) findViewById(R.id.phone);
                                 // TextView lbl_location = (TextView) findViewById(R.id.location);
                                 TextView result_jarak = (TextView)findViewById(R.id.jarak);
+                                TextView lbl_rating = (TextView)findViewById(R.id.harga);
 
 
 
@@ -212,48 +214,49 @@ public class Single_place extends AppCompatActivity {
                                 lbl_phone.setText(Html.fromHtml("<b>Phone:</b> " + phone));
                                // lbl_location.setText(Html.fromHtml("<b>Latitude:</b> " + latitude + ", <b>Longitude:</b> " + longitude));
                                 result_jarak.setText(Html.fromHtml(" <b>Jarak: </b> " + jarak2 + "Km"));
+                                lbl_rating.setText(Html.fromHtml(" <b>Review: </b> " + rating ));
 
                             }
 
 
                         }
                         else if(status.equals("ZERO_RESULTS")){
-                            alert.showAlertDialog(Single_place.this, "Near Places",
-                                    "Sorry no place found.",
+                            alert.showAlertDialog(Single_place.this, "Peringatan",
+                                    "Maaf tidak ada penginapan yang ditemukan.",
                                     false);
                         }
                         else if(status.equals("UNKNOWN_ERROR"))
                         {
-                            alert.showAlertDialog(Single_place.this, "Places Error",
+                            alert.showAlertDialog(Single_place.this, "Peringatan",
                                     "Sorry unknown error occured.",
                                     false);
                         }
                         else if(status.equals("OVER_QUERY_LIMIT"))
                         {
-                            alert.showAlertDialog(Single_place.this, "Places Error",
+                            alert.showAlertDialog(Single_place.this, "Peringatan",
                                     "Sorry query limit to google places is reached",
                                     false);
                         }
                         else if(status.equals("REQUEST_DENIED"))
                         {
-                            alert.showAlertDialog(Single_place.this, "Places Error",
+                            alert.showAlertDialog(Single_place.this, "peringatan",
                                     "Sorry error occured. Request is denied",
                                     false);
                         }
                         else if(status.equals("INVALID_REQUEST"))
                         {
-                            alert.showAlertDialog(Single_place.this, "Places Error",
+                            alert.showAlertDialog(Single_place.this, "Peringatan",
                                     "Sorry error occured. Invalid Request",
                                     false);
                         }
                         else
                         {
-                            alert.showAlertDialog(Single_place.this, "Places Error",
+                            alert.showAlertDialog(Single_place.this, "Peringatan",
                                     "Sorry error occured.",
                                     false);
                         }
                     }else{
-                        alert.showAlertDialog(Single_place.this, "Places Error",
+                        alert.showAlertDialog(Single_place.this, "Peringatan",
                                 "Sorry error occured.",
                                 false);
                     }

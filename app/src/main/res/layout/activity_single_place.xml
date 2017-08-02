@@ -71,15 +71,24 @@
         android:layout_below="@+id/phone"
         />
 
+    <!--  Harga Value -->
+    <TextView
+        android:id="@+id/harga"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jarak"
+        />
+
     <!--  Tracking button -->
     <Button
         android:id="@+id/track"
-        android:layout_width="wrap_content"
+        android:layout_width="120sp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/jarak"
         android:text="Tracking"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_alignParentRight="true"
+        android:background="@drawable/button"
         />
 
 </RelativeLayout>

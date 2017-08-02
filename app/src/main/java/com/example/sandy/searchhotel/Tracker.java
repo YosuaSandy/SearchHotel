@@ -75,7 +75,7 @@ public class Tracker extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.exit:
+            case R.id.exit2:
                 Intent B = new Intent(Tracker.this, MenuAwal.class);
                 startActivity(B);
                 // User chose the "Settings" item, show the app settings UI...
@@ -167,7 +167,7 @@ public class Tracker extends AppCompatActivity implements
         // Output format
         String output = "json";
 
-        // Building the url to the web service
+        // web service
         String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
 
         return url;
